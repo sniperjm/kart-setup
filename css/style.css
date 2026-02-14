@@ -113,6 +113,32 @@ button.inline {
   gap: 0.5rem;
 }
 
+.sessie-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.sessie-actions {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.sessie-actions button {
+  font-size: 0.75rem;
+  padding: 0.3rem 0.7rem;
+}
+
+@media (max-width: 480px) {
+  .sessie-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
 .sessie-item {
   padding: 0.6rem 0.75rem;
   border-radius: 0.6rem;

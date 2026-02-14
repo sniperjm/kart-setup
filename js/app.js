@@ -9,6 +9,8 @@
   const btnAnnuleren = document.getElementById("btn-annuleren");
   const sessiesContainer = document.getElementById("sessies-container");
   const geenSessiesEl = document.getElementById("geen-sessies");
+  const btnExportCsv = document.getElementById("btn-export-csv");
+  const btnPrint = document.getElementById("btn-print");
 
   const filterBaan = document.getElementById("filter-baan");
   const filterKart = document.getElementById("filter-kart");
@@ -181,6 +183,30 @@
     render();
   });
 
+  btnExportCsv.addEventListener("click", () => {
+    const filters = leesFilters();
+    const sessies = gefilterdeSessies(data, filters);
+    if (!sessies.length) {
+      alert("Geen sessies om te exporteren.");
+      return;
+    }
+    const csv = maakCsv(sessies);
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    const datum = new Date().toISOString().slice(0, 10);
+    a.download = `kart-setup-${datum}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+
+  btnPrint.addEventListener("click", () => {
+    window.print();
+  });
+
   // Init
   syncFiltersUI();
   render();
@@ -191,5 +217,68 @@
         console.warn("Service worker registratie faalde", err);
       });
     });
+  }
+
+  function maakCsv(sessies) {
+    const headers = [
+      "datum",
+      "tijd",
+      "baan",
+      "type",
+      "kart",
+      "tand_voor",
+      "tand_achter",
+      "band_type",
+      "band_lv",
+      "band_rv",
+      "band_la",
+      "band_ra",
+      "as",
+      "hubs",
+      "spoor_voor",
+      "spoor_achter",
+      "camber",
+      "caster",
+      "temp",
+      "weer",
+      "grip",
+      "notities"
+    ];
+
+    const rows = sessies.map((s) => [
+      s.datum,
+      s.tijd,
+      s.baanNaam,
+      s.type,
+      s.kartNaam,
+      s.tandwiel.voor ?? "",
+      s.tandwiel.achter ?? "",
+      s.banden.type ?? "",
+      s.banden.lv ?? "",
+      s.banden.rv ?? "",
+      s.banden.la ?? "",
+      s.banden.ra ?? "",
+      s.setup.as ?? "",
+      s.setup.hubs ?? "",
+      s.setup.spoorVoor ?? "",
+      s.setup.spoorAchter ?? "",
+      s.setup.camber ?? "",
+      s.setup.caster ?? "",
+      s.weer.temp ?? "",
+      s.weer.omschrijving ?? "",
+      s.weer.grip ?? "",
+      (s.notities || "").replace(/\s+/g, " ")
+    ]);
+
+    const escape = (value) => {
+      const str = String(value ?? "");
+      if (str.includes(";") || str.includes("\n") || str.includes("""")) {
+        return '"' + str.replace(/""/g, '""') + '"';
+      }
+      return str;
+    };
+
+    const lines = [headers.join(";"), ...rows.map((r) => r.map(escape).join(";"))];
+    return lines.join("\n");
   }
 })();
