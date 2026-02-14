@@ -3,10 +3,8 @@
 (function () {
   const data = laadData();
 
-  const sessieDialog = document.getElementById("sessie-dialog");
   const sessieForm = document.getElementById("sessie-form");
   const btnNieuweSessie = document.getElementById("btn-nieuwe-sessie");
-  const btnAnnuleren = document.getElementById("btn-annuleren");
   const sessiesContainer = document.getElementById("sessies-container");
   const geenSessiesEl = document.getElementById("geen-sessies");
   const btnExportCsv = document.getElementById("btn-export-csv");
@@ -105,12 +103,7 @@
     document.getElementById("grip").value = "";
     document.getElementById("notities").value = "";
 
-    sessieDialog.dataset.id = sessie.id;
-    if (typeof sessieDialog.showModal === "function") {
-      sessieDialog.showModal();
-    } else {
-      sessieDialog.setAttribute("open", "true");
-    }
+    // formulier staat altijd op de pagina, we hoeven niets te openen
   }
 
   function leesSessieUitForm() {
@@ -182,14 +175,8 @@
 
   // Event listeners
   btnNieuweSessie.addEventListener("click", () => {
-    openNieuweSessieDialog();
-  });
-
-  btnAnnuleren.addEventListener("click", () => {
-    if (typeof sessieDialog.close === "function") {
-      sessieDialog.close();
-    }
-    sessieDialog.removeAttribute("open");
+    // scroll naar het formulier
+    document.getElementById("sessie-form-section").scrollIntoView({ behavior: "smooth" });
   });
 
   sessieForm.addEventListener("submit", (e) => {
