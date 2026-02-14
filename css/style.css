@@ -146,6 +146,16 @@ button.inline {
   border: 1px solid #1f2937;
 }
 
+.sessie-details {
+  margin-top: 0.4rem;
+  font-size: 0.75rem;
+  color: #d1d5db;
+}
+
+.sessie-details div + div {
+  margin-top: 0.1rem;
+}
+
 .sessie-kop {
   display: flex;
   justify-content: space-between;

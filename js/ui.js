@@ -88,14 +88,45 @@ function renderSessies(container, sessies, banenMap, kartsMap) {
       tags.appendChild(gripTag);
     }
 
-    if (s.notities) {
-      const note = document.createElement("div");
-      note.className = "hint";
-      note.textContent = s.notities;
-      div.append(kop, tags, note);
-    } else {
-      div.append(kop, tags);
+    const details = document.createElement("div");
+    details.className = "sessie-details";
+
+    const rows = [];
+
+    rows.push(`Tandwiel: ${s.tandwiel.voor || "?"}/${s.tandwiel.achter || "?"}${s.tandwiel.opmerking ? " (" + s.tandwiel.opmerking + ")" : ""}`);
+
+    const bandParts = [];
+    if (s.banden.type) bandParts.push(`type: ${s.banden.type}`);
+    if (s.banden.lv || s.banden.rv || s.banden.la || s.banden.ra) {
+      bandParts.push(
+        `druk LV/RV/LA/RA: ${s.banden.lv ?? "?"}/${s.banden.rv ?? "?"}/${s.banden.la ?? "?"}/${s.banden.ra ?? "?"} bar`
+      );
     }
+    if (s.banden.breedteVoor || s.banden.breedteAchter) {
+      bandParts.push(`breedte v/a: ${s.banden.breedteVoor ?? "?"}/${s.banden.breedteAchter ?? "?"} mm`);
+    }
+    if (bandParts.length) rows.push("Banden: " + bandParts.join(" · "));
+
+    const setupParts = [];
+    if (s.setup.as) setupParts.push(`as: ${s.setup.as}`);
+    if (s.setup.hubs) setupParts.push(`hubs: ${s.setup.hubs}`);
+    if (s.setup.spoorVoor) setupParts.push(`spoor voor: ${s.setup.spoorVoor}`);
+    if (s.setup.spoorAchter) setupParts.push(`spoor achter: ${s.setup.spoorAchter}`);
+    if (s.setup.camber) setupParts.push(`camber: ${s.setup.camber}`);
+    if (s.setup.caster) setupParts.push(`caster: ${s.setup.caster}`);
+    if (setupParts.length) rows.push("Setup: " + setupParts.join(" · "));
+
+    const weerParts = [];
+    if (s.weer.temp != null) weerParts.push(`${s.weer.temp}°C`);
+    if (s.weer.omschrijving) weerParts.push(s.weer.omschrijving);
+    if (s.weer.grip) weerParts.push(`grip: ${s.weer.grip}`);
+    if (weerParts.length) rows.push("Weer: " + weerParts.join(" · "));
+
+    if (s.notities) rows.push("Notities: " + s.notities);
+
+    details.innerHTML = rows.map((r) => `<div>${r}</div>`).join("");
+
+    div.append(kop, tags, details);
 
     container.appendChild(div);
   }
