@@ -173,14 +173,90 @@
       </section>
 
       <section class="grid">
-        <h3 class="full-width">Weer & grip</h3>
+        <h3 class="full-width">Bestuurder & ballast</h3>
+        <label>
+          Bestuurder gewicht (kg)
+          <input type="number" step="0.1" id="gewicht-bestuurder" name="gewichtBestuurder" />
+        </label>
+        <label>
+          Ballast voor (kg)
+          <input type="number" step="0.1" id="ballast-voor" name="ballastVoor" />
+        </label>
+        <label>
+          Ballast links (kg)
+          <input type="number" step="0.1" id="ballast-links" name="ballastLinks" />
+        </label>
+        <label>
+          Ballast rechts (kg)
+          <input type="number" step="0.1" id="ballast-rechts" name="ballastRechts" />
+        </label>
+        <label>
+          Ballast achter (kg)
+          <input type="number" step="0.1" id="ballast-achter" name="ballastAchter" />
+        </label>
+      </section>
+
+      <section class="grid">
+        <h3 class="full-width">Motor</h3>
+        <label>
+          Carburateur type
+          <input type="text" id="carb-type" name="carbType" />
+        </label>
+        <label>
+          Main jet
+          <input type="number" id="main-jet" name="mainJet" />
+        </label>
+        <label>
+          Naaldpositie
+          <input type="text" id="naaldpositie" name="naaldpositie" />
+        </label>
+      </section>
+
+      <section class="grid">
+        <h3 class="full-width">Zitpositie & chassis</h3>
+        <label>
+          Afstand links voor (mm)
+          <input type="number" id="zit-links-voor" name="zitLinksVoor" />
+        </label>
+        <label>
+          Afstand rechts voor (mm)
+          <input type="number" id="zit-rechts-voor" name="zitRechtsVoor" />
+        </label>
+        <label>
+          Afstand achter (mm)
+          <input type="number" id="zit-achter" name="zitAchter" />
+        </label>
+        <label>
+          Voorhoogte
+          <input type="text" id="voorhoogte" name="voorhoogte" placeholder="bv. midden-" />
+        </label>
+        <label>
+          Achterhoogte
+          <input type="text" id="achterhoogte" name="achterhoogte" placeholder="bv. midden-" />
+        </label>
+      </section>
+
+      <section class="grid">
+        <h3 class="full-width">Weer & baan</h3>
+        <label>
+          Plaats / baan
+          <input type="text" id="plaats" name="plaats" placeholder="bv. Hoorn, NL" />
+        </label>
+        <label>
+          Baanomstandigheden
+          <input type="text" id="baan-conditie" name="baanConditie" placeholder="bv. droog / nat" />
+        </label>
         <label>
           Temperatuur (°C)
           <input type="number" id="temp" name="temp" />
         </label>
         <label>
-          Weer
-          <input type="text" id="weer" name="weer" placeholder="bv. zonnig / bewolkt" />
+          Luchtvochtigheid (%)
+          <input type="number" id="luchtvochtigheid" name="luchtvochtigheid" />
+        </label>
+        <label>
+          Luchtdruk (mbar)
+          <input type="number" id="luchtdruk" name="luchtdruk" />
         </label>
         <label>
           Baangrip

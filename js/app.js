@@ -84,8 +84,24 @@
     document.getElementById("spoor-achter").value = "";
     document.getElementById("camber").value = "";
     document.getElementById("caster").value = "";
+    document.getElementById("gewicht-bestuurder").value = "";
+    document.getElementById("ballast-voor").value = "";
+    document.getElementById("ballast-links").value = "";
+    document.getElementById("ballast-rechts").value = "";
+    document.getElementById("ballast-achter").value = "";
+    document.getElementById("carb-type").value = "";
+    document.getElementById("main-jet").value = "";
+    document.getElementById("naaldpositie").value = "";
+    document.getElementById("zit-links-voor").value = "";
+    document.getElementById("zit-rechts-voor").value = "";
+    document.getElementById("zit-achter").value = "";
+    document.getElementById("voorhoogte").value = "";
+    document.getElementById("achterhoogte").value = "";
+    document.getElementById("plaats").value = "";
+    document.getElementById("baan-conditie").value = "";
     document.getElementById("temp").value = "";
-    document.getElementById("weer").value = "";
+    document.getElementById("luchtvochtigheid").value = "";
+    document.getElementById("luchtdruk").value = "";
     document.getElementById("grip").value = "";
     document.getElementById("notities").value = "";
 
@@ -131,12 +147,29 @@
         spoorVoor: document.getElementById("spoor-voor").value.trim(),
         spoorAchter: document.getElementById("spoor-achter").value.trim(),
         camber: document.getElementById("camber").value.trim(),
-        caster: document.getElementById("caster").value.trim()
+        caster: document.getElementById("caster").value.trim(),
+        gewichtBestuurder: parseFloat(document.getElementById("gewicht-bestuurder").value) || null,
+        ballastVoor: parseFloat(document.getElementById("ballast-voor").value) || null,
+        ballastLinks: parseFloat(document.getElementById("ballast-links").value) || null,
+        ballastRechts: parseFloat(document.getElementById("ballast-rechts").value) || null,
+        ballastAchter: parseFloat(document.getElementById("ballast-achter").value) || null,
+        carbType: document.getElementById("carb-type").value.trim(),
+        mainJet: parseFloat(document.getElementById("main-jet").value) || null,
+        naaldpositie: document.getElementById("naaldpositie").value.trim(),
+        zitLinksVoor: parseFloat(document.getElementById("zit-links-voor").value) || null,
+        zitRechtsVoor: parseFloat(document.getElementById("zit-rechts-voor").value) || null,
+        zitAchter: parseFloat(document.getElementById("zit-achter").value) || null,
+        voorhoogte: document.getElementById("voorhoogte").value.trim(),
+        achterhoogte: document.getElementById("achterhoogte").value.trim()
       },
       weer: {
         temp: document.getElementById("temp").value ? parseFloat(document.getElementById("temp").value) : null,
-        omschrijving: document.getElementById("weer").value.trim(),
-        grip: document.getElementById("grip").value.trim()
+        omschrijving: document.getElementById("baan-conditie").value.trim(),
+        grip: document.getElementById("grip").value.trim(),
+        plaats: document.getElementById("plaats").value.trim(),
+        baanConditie: document.getElementById("baan-conditie").value.trim(),
+        luchtvochtigheid: document.getElementById("luchtvochtigheid").value ? parseFloat(document.getElementById("luchtvochtigheid").value) : null,
+        luchtdruk: document.getElementById("luchtdruk").value ? parseFloat(document.getElementById("luchtdruk").value) : null
       },
       notities: document.getElementById("notities").value.trim(),
       aangemaaktOp: Date.now()
@@ -248,8 +281,25 @@
       "spoor_achter",
       "camber",
       "caster",
+      "gewicht_bestuurder",
+      "ballast_voor",
+      "ballast_links",
+      "ballast_rechts",
+      "ballast_achter",
+      "carb_type",
+      "main_jet",
+      "naaldpositie",
+      "zit_links_voor",
+      "zit_rechts_voor",
+      "zit_achter",
+      "voorhoogte",
+      "achterhoogte",
       "temp",
       "weer",
+      "baan_conditie",
+      "plaats",
+      "luchtvochtigheid",
+      "luchtdruk",
       "grip",
       "notities"
     ];
@@ -276,8 +326,25 @@
       s.setup.spoorAchter ?? "",
       s.setup.camber ?? "",
       s.setup.caster ?? "",
+      s.setup.gewichtBestuurder ?? "",
+      s.setup.ballastVoor ?? "",
+      s.setup.ballastLinks ?? "",
+      s.setup.ballastRechts ?? "",
+      s.setup.ballastAchter ?? "",
+      s.setup.carbType ?? "",
+      s.setup.mainJet ?? "",
+      s.setup.naaldpositie ?? "",
+      s.setup.zitLinksVoor ?? "",
+      s.setup.zitRechtsVoor ?? "",
+      s.setup.zitAchter ?? "",
+      s.setup.voorhoogte ?? "",
+      s.setup.achterhoogte ?? "",
       s.weer.temp ?? "",
       s.weer.omschrijving ?? "",
+      s.weer.baanConditie ?? "",
+      s.weer.plaats ?? "",
+      s.weer.luchtvochtigheid ?? "",
+      s.weer.luchtdruk ?? "",
       s.weer.grip ?? "",
       (s.notities || "").replace(/\s+/g, " ")
     ]);

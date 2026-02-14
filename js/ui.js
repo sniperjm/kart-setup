@@ -114,11 +114,29 @@ function renderSessies(container, sessies, banenMap, kartsMap) {
     if (s.setup.spoorAchter) setupParts.push(`spoor achter: ${s.setup.spoorAchter}`);
     if (s.setup.camber) setupParts.push(`camber: ${s.setup.camber}`);
     if (s.setup.caster) setupParts.push(`caster: ${s.setup.caster}`);
+    if (s.setup.gewichtBestuurder != null) setupParts.push(`gewicht bestuurder: ${s.setup.gewichtBestuurder} kg`);
+    if (s.setup.ballastVoor != null) setupParts.push(`ballast voor: ${s.setup.ballastVoor} kg`);
+    if (s.setup.ballastLinks != null) setupParts.push(`ballast links: ${s.setup.ballastLinks} kg`);
+    if (s.setup.ballastRechts != null) setupParts.push(`ballast rechts: ${s.setup.ballastRechts} kg`);
+    if (s.setup.ballastAchter != null) setupParts.push(`ballast achter: ${s.setup.ballastAchter} kg`);
+    if (s.setup.carbType) setupParts.push(`carb: ${s.setup.carbType}`);
+    if (s.setup.mainJet != null) setupParts.push(`main jet: ${s.setup.mainJet}`);
+    if (s.setup.naaldpositie) setupParts.push(`naald: ${s.setup.naaldpositie}`);
+    if (s.setup.zitLinksVoor != null || s.setup.zitRechtsVoor != null || s.setup.zitAchter != null) {
+      setupParts.push(
+        `zitpos links/rechts/achter: ${s.setup.zitLinksVoor ?? "?"}/${s.setup.zitRechtsVoor ?? "?"}/${s.setup.zitAchter ?? "?"} mm`
+      );
+    }
+    if (s.setup.voorhoogte) setupParts.push(`voorhoogte: ${s.setup.voorhoogte}`);
+    if (s.setup.achterhoogte) setupParts.push(`achterhoogte: ${s.setup.achterhoogte}`);
     if (setupParts.length) rows.push("Setup: " + setupParts.join(" · "));
 
     const weerParts = [];
+    if (s.weer.plaats) weerParts.push(s.weer.plaats);
+    if (s.weer.baanConditie) weerParts.push(`baan: ${s.weer.baanConditie}`);
     if (s.weer.temp != null) weerParts.push(`${s.weer.temp}°C`);
-    if (s.weer.omschrijving) weerParts.push(s.weer.omschrijving);
+    if (s.weer.luchtvochtigheid != null) weerParts.push(`RV: ${s.weer.luchtvochtigheid}%`);
+    if (s.weer.luchtdruk != null) weerParts.push(`druk: ${s.weer.luchtdruk} mbar`);
     if (s.weer.grip) weerParts.push(`grip: ${s.weer.grip}`);
     if (weerParts.length) rows.push("Weer: " + weerParts.join(" · "));
 

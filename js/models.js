@@ -79,12 +79,29 @@ function maakLegeSessie() {
       spoorVoor: "",
       spoorAchter: "",
       camber: "",
-      caster: ""
+      caster: "",
+      gewichtBestuurder: null,
+      ballastVoor: null,
+      ballastLinks: null,
+      ballastRechts: null,
+      ballastAchter: null,
+      carbType: "",
+      mainJet: null,
+      naaldpositie: "",
+      zitLinksVoor: null,
+      zitRechtsVoor: null,
+      zitAchter: null,
+      voorhoogte: "",
+      achterhoogte: ""
     },
     weer: {
       temp: null,
       omschrijving: "",
-      grip: ""
+      grip: "",
+      plaats: "",
+      baanConditie: "",
+      luchtvochtigheid: null,
+      luchtdruk: null
     },
     notities: "",
     aangemaaktOp: Date.now()
