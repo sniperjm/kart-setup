@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kart Setup Log</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>Kart Setup Log</h1>
+    <button id="btn-nieuwe-sessie" class="primary">Nieuwe sessie</button>
+  </header>
+
+  <main>
+    <section id="filters" class="card">
+      <h2>Filter sessies</h2>
+      <div class="grid">
+        <label>
+          Baan
+          <select id="filter-baan">
+            <option value="">Alle banen</option>
+          </select>
+        </label>
+        <label>
+          Kart
+          <select id="filter-kart">
+            <option value="">Alle karts</option>
+          </select>
+        </label>
+        <label>
+          Datum
+          <input type="date" id="filter-datum" />
+        </label>
+        <label>
+          Type sessie
+          <select id="filter-type">
+            <option value="">Alle types</option>
+            <option value="training">Training</option>
+            <option value="quali">Quali</option>
+            <option value="race">Race</option>
+          </select>
+        </label>
+      </div>
+      <div class="actions">
+        <button id="btn-filters-reset" class="secondary">Reset filters</button>
+      </div>
+    </section>
+
+    <section id="sessie-lijst" class="card">
+      <h2>Sessies</h2>
+      <div id="sessies-container" class="sessies-lijst">
+        <!-- Dynamisch gevuld -->
+      </div>
+      <p id="geen-sessies" class="hint">Nog geen sessies opgeslagen.</p>
+    </section>
+  </main>
+
+  <dialog id="sessie-dialog">
+    <form id="sessie-form">
+      <h2>Nieuwe sessie</h2>
+      <section class="grid">
+        <label>
+          Datum
+          <input type="date" id="datum" name="datum" required />
+        </label>
+        <label>
+          Tijd
+          <input type="time" id="tijd" name="tijd" required />
+        </label>
+        <label>
+          Baan
+          <select id="baan" name="baan" required></select>
+          <button type="button" id="btn-baan-toevoegen" class="inline">Nieuwe baan</button>
+        </label>
+        <label>
+          Type sessie
+          <select id="type" name="type" required>
+            <option value="training">Training</option>
+            <option value="quali">Quali</option>
+            <option value="race">Race</option>
+            <option value="overig">Overig</option>
+          </select>
+        </label>
+        <label>
+          Kart
+          <select id="kart" name="kart" required></select>
+          <button type="button" id="btn-kart-toevoegen" class="inline">Nieuwe kart</button>
+        </label>
+      </section>
+
+      <section class="grid">
+        <h3 class="full-width">Tandwielen</h3>
+        <label>
+          Voor (tand)
+          <input type="number" id="tand-voor" name="tandVoor" min="5" max="30" />
+        </label>
+        <label>
+          Achter (tand)
+          <input type="number" id="tand-achter" name="tandAchter" min="50" max="100" />
+        </label>
+      </section>
+
+      <section class="grid">
+        <h3 class="full-width">Banden</h3>
+        <label>
+          Type band
+          <input type="text" id="band-type" name="bandType" placeholder="bv. Vega Green" />
+        </label>
+        <label>
+          Links voor (bar)
+          <input type="number" step="0.01" id="band-lv" name="bandLV" />
+        </label>
+        <label>
+          Rechts voor (bar)
+          <input type="number" step="0.01" id="band-rv" name="bandRV" />
+        </label>
+        <label>
+          Links achter (bar)
+          <input type="number" step="0.01" id="band-la" name="bandLA" />
+        </label>
+        <label>
+          Rechts achter (bar)
+          <input type="number" step="0.01" id="band-ra" name="bandRA" />
+        </label>
+      </section>
+
+      <section class="grid">
+        <h3 class="full-width">Setup</h3>
+        <label>
+          As
+          <input type="text" id="as" name="as" placeholder="bv. medium" />
+        </label>
+        <label>
+          Hubs
+          <input type="text" id="hubs" name="hubs" placeholder="bv. kort" />
+        </label>
+        <label>
+          Spoor voor
+          <input type="text" id="spoor-voor" name="spoorVoor" placeholder="bv. +2mm" />
+        </label>
+        <label>
+          Spoor achter
+          <input type="text" id="spoor-achter" name="spoorAchter" placeholder="bv. 1400mm" />
+        </label>
+        <label>
+          Camber
+          <input type="text" id="camber" name="camber" placeholder="bv. 0 of -1" />
+        </label>
+        <label>
+          Caster
+          <input type="text" id="caster" name="caster" placeholder="bv. standaard / +1" />
+        </label>
+      </section>
+
+      <section class="grid">
+        <h3 class="full-width">Weer & grip</h3>
+        <label>
+          Temperatuur (°C)
+          <input type="number" id="temp" name="temp" />
+        </label>
+        <label>
+          Weer
+          <input type="text" id="weer" name="weer" placeholder="bv. zonnig / bewolkt" />
+        </label>
+        <label>
+          Baangrip
+          <input type="text" id="grip" name="grip" placeholder="bv. laag / medium / hoog" />
+        </label>
+      </section>
+
+      <section>
+        <h3>Notities</h3>
+        <textarea id="notities" name="notities" rows="4" placeholder="Hoe voelde de kart? Wat werkte goed/slecht?"></textarea>
+      </section>
+
+      <menu class="dialog-actions">
+        <button type="button" id="btn-annuleren" class="secondary">Annuleren</button>
+        <button type="submit" class="primary">Opslaan</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <script src="js/models.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
