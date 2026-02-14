@@ -69,20 +69,19 @@
       <section class="grid">
         <label>
           Datum
-          <input type="date" id="datum" name="datum" required />
+          <input type="date" id="datum" name="datum" />
         </label>
         <label>
           Tijd
-          <input type="time" id="tijd" name="tijd" required />
+          <input type="time" id="tijd" name="tijd" />
         </label>
         <label>
           Baan
-          <select id="baan" name="baan" required></select>
-          <button type="button" id="btn-baan-toevoegen" class="inline">Nieuwe baan</button>
+          <input type="text" id="baan" name="baan" placeholder="bv. Hoorn" />
         </label>
         <label>
           Type sessie
-          <select id="type" name="type" required>
+          <select id="type" name="type">
             <option value="training">Training</option>
             <option value="quali">Quali</option>
             <option value="race">Race</option>
@@ -91,8 +90,7 @@
         </label>
         <label>
           Kart
-          <select id="kart" name="kart" required></select>
-          <button type="button" id="btn-kart-toevoegen" class="inline">Nieuwe kart</button>
+          <input type="text" id="kart" name="kart" placeholder="bv. Rotax Max" />
         </label>
       </section>
 

@@ -16,10 +16,8 @@
   const filterType = document.getElementById("filter-type");
   const btnFiltersReset = document.getElementById("btn-filters-reset");
 
-  const baanSelect = document.getElementById("baan");
-  const kartSelect = document.getElementById("kart");
-  const btnBaanToevoegen = document.getElementById("btn-baan-toevoegen");
-  const btnKartToevoegen = document.getElementById("btn-kart-toevoegen");
+  const baanInput = document.getElementById("baan");
+  const kartInput = document.getElementById("kart");
 
   function maakMaps() {
     return {
@@ -34,10 +32,8 @@
   }
 
   function syncFormDropdowns(sessie) {
-    vulSelect(baanSelect, data.banen, { includeLeeg: false });
-    vulSelect(kartSelect, data.karts, { includeLeeg: false });
-    baanSelect.value = sessie.baanId;
-    kartSelect.value = sessie.kartId;
+    baanInput.value = sessie.baanNaam || "";
+    kartInput.value = sessie.kartNaam || "";
   }
 
   function leesFilters() {
@@ -110,20 +106,30 @@
     const id = sessieDialog.dataset.id || maakId("sessie");
     const datum = document.getElementById("datum").value;
     const tijd = document.getElementById("tijd").value;
-    const baanId = baanSelect.value;
-    const kartId = kartSelect.value;
-    const baan = data.banen.find((b) => b.id === baanId);
-    const kart = data.karts.find((k) => k.id === kartId);
+    const baanNaam = baanInput.value.trim() || "Onbekende baan";
+    const kartNaam = kartInput.value.trim() || "Mijn kart";
+
+    // Zorg dat baan/kart ook in de filterlijsten terechtkomen
+    let baan = data.banen.find((b) => b.naam === baanNaam);
+    if (!baan) {
+      baan = { id: maakId("baan"), naam: baanNaam };
+      data.banen.push(baan);
+    }
+    let kart = data.karts.find((k) => k.naam === kartNaam);
+    if (!kart) {
+      kart = { id: maakId("kart"), naam: kartNaam };
+      data.karts.push(kart);
+    }
 
     return {
       id,
       datum,
       tijd,
-      baanId,
-      baanNaam: baan ? baan.naam : "",
+      baanId: baan.id,
+      baanNaam: baan.naam,
       type: document.getElementById("type").value,
-      kartId,
-      kartNaam: kart ? kart.naam : "",
+      kartId: kart.id,
+      kartNaam: kart.naam,
       tandwiel: {
         voor: parseInt(document.getElementById("tand-voor").value, 10) || null,
         achter: parseInt(document.getElementById("tand-achter").value, 10) || null,
