@@ -189,25 +189,8 @@
     e.preventDefault();
     const sessie = leesSessieUitForm();
     voegSessieToe(data, sessie);
-    sessieDialog.close();
+    syncFiltersUI();
     render();
-  });
-
-  btnBaanToevoegen.addEventListener("click", () => {
-    const naam = prompt("Naam van de baan:");
-    if (!naam || !naam.trim()) return;
-    const nieuwe = voegBaanToe(data, naam);
-    syncFiltersUI();
-    syncFormDropdowns({ baanId: nieuwe.id, kartId: kartSelect.value });
-  });
-
-  btnKartToevoegen.addEventListener("click", () => {
-    const naam = prompt("Naam van de kart:");
-    if (!naam || !naam.trim()) return;
-    const klasse = prompt("Optioneel: klasse/motor (bijv. Rotax, X30)") || "";
-    const nieuwe = voegKartToe(data, naam, klasse);
-    syncFiltersUI();
-    syncFormDropdowns({ baanId: baanSelect.value, kartId: nieuwe.id });
   });
 
   [filterBaan, filterKart, filterDatum, filterType].forEach((el) => {
@@ -249,6 +232,8 @@
   // Init
   syncFiltersUI();
   render();
+  // Vul standaard datum/tijd en basiswaarden in bij eerste load
+  openNieuweSessieDialog();
 
   // Tijdelijk service worker uitgeschakeld om cache-problemen te voorkomen
   // if ("serviceWorker" in navigator) {
