@@ -103,7 +103,7 @@
   }
 
   function leesSessieUitForm() {
-    const id = sessieDialog.dataset.id || maakId("sessie");
+    const id = maakId("sessie");
     const datum = document.getElementById("datum").value;
     const tijd = document.getElementById("tijd").value;
     const baanNaam = baanInput.value.trim() || "Onbekende baan";
