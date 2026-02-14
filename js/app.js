@@ -106,7 +106,11 @@
     document.getElementById("notities").value = "";
 
     sessieDialog.dataset.id = sessie.id;
-    sessieDialog.showModal();
+    if (typeof sessieDialog.showModal === "function") {
+      sessieDialog.showModal();
+    } else {
+      sessieDialog.setAttribute("open", "true");
+    }
   }
 
   function leesSessieUitForm() {
@@ -182,7 +186,10 @@
   });
 
   btnAnnuleren.addEventListener("click", () => {
-    sessieDialog.close();
+    if (typeof sessieDialog.close === "function") {
+      sessieDialog.close();
+    }
+    sessieDialog.removeAttribute("open");
   });
 
   sessieForm.addEventListener("submit", (e) => {
