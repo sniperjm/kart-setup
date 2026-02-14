@@ -50,11 +50,25 @@ function renderSessies(container, sessies, banenMap, kartsMap) {
       tags.appendChild(gearTag);
     }
 
+    if (s.tandwiel.opmerking) {
+      const gearNoteTag = document.createElement("span");
+      gearNoteTag.className = "tag";
+      gearNoteTag.textContent = s.tandwiel.opmerking;
+      tags.appendChild(gearNoteTag);
+    }
+
     if (s.banden && s.banden.type) {
       const bandTag = document.createElement("span");
       bandTag.className = "tag";
       bandTag.textContent = s.banden.type;
       tags.appendChild(bandTag);
+    }
+
+    if (s.banden && (s.banden.breedteVoor || s.banden.breedteAchter)) {
+      const breedteTag = document.createElement("span");
+      breedteTag.className = "tag";
+      breedteTag.textContent = `breedte v/a: ${s.banden.breedteVoor || "?"}/${s.banden.breedteAchter || "?"}`;
+      tags.appendChild(breedteTag);
     }
 
     if (s.weer && (s.weer.temp || s.weer.omschrijving)) {

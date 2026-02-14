@@ -70,7 +70,10 @@
 
     document.getElementById("tand-voor").value = "";
     document.getElementById("tand-achter").value = "";
+    document.getElementById("tand-opm").value = "";
     document.getElementById("band-type").value = "";
+    document.getElementById("breedte-voor").value = "";
+    document.getElementById("breedte-achter").value = "";
     document.getElementById("band-lv").value = "";
     document.getElementById("band-rv").value = "";
     document.getElementById("band-la").value = "";
@@ -110,10 +113,13 @@
       kartNaam: kart ? kart.naam : "",
       tandwiel: {
         voor: parseInt(document.getElementById("tand-voor").value, 10) || null,
-        achter: parseInt(document.getElementById("tand-achter").value, 10) || null
+        achter: parseInt(document.getElementById("tand-achter").value, 10) || null,
+        opmerking: document.getElementById("tand-opm").value.trim()
       },
       banden: {
         type: document.getElementById("band-type").value.trim(),
+        breedteVoor: parseFloat(document.getElementById("breedte-voor").value) || null,
+        breedteAchter: parseFloat(document.getElementById("breedte-achter").value) || null,
         lv: parseFloat(document.getElementById("band-lv").value) || null,
         rv: parseFloat(document.getElementById("band-rv").value) || null,
         la: parseFloat(document.getElementById("band-la").value) || null,
@@ -233,6 +239,9 @@
       "band_rv",
       "band_la",
       "band_ra",
+      "breedte_voor",
+      "breedte_achter",
+      "tand_opmerking",
       "as",
       "hubs",
       "spoor_voor",
@@ -258,6 +267,9 @@
       s.banden.rv ?? "",
       s.banden.la ?? "",
       s.banden.ra ?? "",
+      s.banden.breedteVoor ?? "",
+      s.banden.breedteAchter ?? "",
+      s.tandwiel.opmerking ?? "",
       s.setup.as ?? "",
       s.setup.hubs ?? "",
       s.setup.spoorVoor ?? "",

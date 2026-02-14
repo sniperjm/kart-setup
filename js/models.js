@@ -61,14 +61,17 @@ function maakLegeSessie() {
     kartNaam: DEFAULT_DATA.karts[0].naam,
     tandwiel: {
       voor: null,
-      achter: null
+      achter: null,
+      opmerking: ""
     },
     banden: {
       type: "",
       lv: null,
       rv: null,
       la: null,
-      ra: null
+      ra: null,
+      breedteVoor: null,
+      breedteAchter: null
     },
     setup: {
       as: "",
