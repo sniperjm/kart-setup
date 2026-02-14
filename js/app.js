@@ -352,8 +352,8 @@
 
     const escape = (value) => {
       const str = String(value ?? "");
-      if (str.includes(";") || str.includes("\n") || str.includes("""")) {
-        return '"' + str.replace(/""/g, '""') + '"';
+      if (str.includes(";") || str.includes("\n") || str.includes('"')) {
+        return '"' + str.replace(/"/g, '""') + '"';
       }
       return str;
     };
